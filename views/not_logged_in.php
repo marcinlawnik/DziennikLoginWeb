@@ -39,7 +39,7 @@
           <!-- Button -->
 
           <div class="col-sm-12 controls">
-            <a id="btn-login" href="#" class="btn btn-success" name="login"><?php echo WORDING_LOGIN; ?></a> <a href="register.php" class="btn btn-primary" name=
+            <a id="btn-login" href="login.php" class="btn btn-success" name="login"><?php echo WORDING_LOGIN; ?></a> <a href="register.php" class="btn btn-primary" name=
             "register"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
           </div>
         </div>
