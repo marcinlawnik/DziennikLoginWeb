@@ -8,14 +8,14 @@
 
 // login & registration classes
 define("MESSAGE_ACCOUNT_NOT_ACTIVATED", "Twoje konto nie zostało jeszcze aktywowane. Wejdź w link, który masz na mail'u.");
-define("MESSAGE_CAPTCHA_WRONG", "Captcha was wrong!");
-define("MESSAGE_COOKIE_INVALID", "Invalid cookie");
-define("MESSAGE_DATABASE_ERROR", "Database connection problem.");
-define("MESSAGE_EMAIL_ALREADY_EXISTS", "This email address is already registered. Please use the \"I forgot my password\" page if you don't remember it.");
-define("MESSAGE_EMAIL_CHANGE_FAILED", "Sorry, your email changing failed.");
-define("MESSAGE_EMAIL_CHANGED_SUCCESSFULLY", "Your email address has been changed successfully. New email address is ");
-define("MESSAGE_EMAIL_EMPTY", "Email cannot be empty");
-define("MESSAGE_EMAIL_INVALID", "Your email address is not in a valid email format");
+define("MESSAGE_CAPTCHA_WRONG", "Captcha jest zła!");
+define("MESSAGE_COOKIE_INVALID", "Niepoprawne ciasteczka");
+define("MESSAGE_DATABASE_ERROR", "Problemy z połączeniem z bazą.");
+define("MESSAGE_EMAIL_ALREADY_EXISTS", "Ten adres został już wykożystany. Proszę użyć \"Zapomniałe(a)ś hasła\" jeśli go nie pamiętasz.");
+define("MESSAGE_EMAIL_CHANGE_FAILED", "Przepraszam, błąd zmiany adresu.");
+define("MESSAGE_EMAIL_CHANGED_SUCCESSFULLY", "Twój adres e-mail został zmieniony. Nowy adres e-mail to ");
+define("MESSAGE_EMAIL_EMPTY", "Musisz wpisać adres e-mail");
+define("MESSAGE_EMAIL_INVALID", "Twój adres e-mail nie jest poprawny");
 define("MESSAGE_EMAIL_SAME_LIKE_OLD_ONE", "Sorry, that email address is the same as your current one. Please choose another one.");
 define("MESSAGE_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters");
 define("MESSAGE_LINK_PARAMETER_EMPTY", "Empty link parameter data.");
