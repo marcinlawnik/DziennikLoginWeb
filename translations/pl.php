@@ -7,7 +7,7 @@
  */
 
 // login & registration classes
-define("MESSAGE_ACCOUNT_NOT_ACTIVATED", "Your account is not activated yet. Please click on the confirm link in the mail.");
+define("MESSAGE_ACCOUNT_NOT_ACTIVATED", "Twoje konto nie zostało jeszcze aktywowane. Wejdź w link, który masz na mail'u.");
 define("MESSAGE_CAPTCHA_WRONG", "Captcha was wrong!");
 define("MESSAGE_COOKIE_INVALID", "Invalid cookie");
 define("MESSAGE_DATABASE_ERROR", "Database connection problem.");
