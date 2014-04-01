@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>php-login-advanced</title>
+    <title>DziennikLogin</title>
     <style type="text/css">
         /* just for the demo */
         body {
@@ -25,7 +25,17 @@
         input[type=checkbox] {
             margin-bottom: 15px;
         }
+        /*<![CDATA[*/
+        div.c7 {margin-top:50px;}
+        div.c6 {padding-top:30px}
+        div.c5 {border-top: 1px solid#888; padding-top:15px; font-size:85%}
+        div.c4 {margin-top:10px}
+        div.c3 {margin-bottom: 25px}
+        div.c2 {display:none}
+        div.c1 {float:right; font-size: 80%; position: relative; top:-10px}
+        /*]]>*/
     </style>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
