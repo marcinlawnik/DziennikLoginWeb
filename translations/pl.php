@@ -58,7 +58,7 @@ define("WORDING_EDIT_USER_DATA", "Zmień dane użytkownika");
 define("WORDING_EDIT_YOUR_CREDENTIALS", "Jesteś zalogowany i możesz edytować passy do twojego konta");
 define("WORDING_FORGOT_MY_PASSWORD", "Zapomniałem hasła");
 define("WORDING_LOGIN", "Zalogowany");
-define("WORDING_LOGOUT", "Wylogowany");
+define("WORDING_LOGOUT", "Wyloguj");
 define("WORDING_NEW_EMAIL", "Nowy email");
 define("WORDING_NEW_PASSWORD", "Nowe hasło");
 define("WORDING_NEW_PASSWORD_REPEAT", "Powtórz nowe hasło");
