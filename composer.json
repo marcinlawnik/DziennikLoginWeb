@@ -21,7 +21,6 @@
         "ircmaxell/password-compat": "1.0.*",
         "phpmailer/phpmailer": "5.2.*",
         "gregwar/captcha": "dev-master",
-        "facebook/php-sdk": "@stable",
         "raveren/kint": "dev-1.0.0-wip"
     }
 }
