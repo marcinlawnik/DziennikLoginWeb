@@ -26,14 +26,15 @@
                                       </div>
                                     </div>
                                 <div style="margin-top:10px" class="form-group">
-                                    <div class="col-sm-12 controls">
+                                    <div class="col-sm-4 controls">
                                     <input type="submit" id="btn-login" class="btn btn-success" name="login" value="<?php echo WORDING_LOGIN; ?>" />
                                     </div>
-                                </div>
-                            </form>
-                            <div>
+                                <div class="col-sm-4 controls">
                                 <a id="btn-fblogin" href="register.php" class="btn btn-primary"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
                             </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
         </div>
