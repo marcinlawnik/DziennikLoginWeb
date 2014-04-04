@@ -11,12 +11,12 @@
 if (isset($login)) {
     if ($login->errors) {
         foreach ($login->errors as $error) {
-            echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="padding:10px;">'.$error.'</div>';
+            echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="margin-left:10px;margin-right:10px;">'.$error.'</div>';
         }
     }
     if ($login->messages) {
         foreach ($login->messages as $message) {
-            echo '<div id="login-alert" class="alert alert-success col-sm-12 style="padding:10px;"">'.$message.'</div>';
+            echo '<div id="login-alert" class="alert alert-success col-sm-12 style="margin-left:10px;margin-right:10px;">'.$message.'</div>';
         }
     }
 }
