@@ -4,7 +4,7 @@
             <div class="panel panel-primary" >
                     <div class="panel-heading">
                         <div class="panel-title">Zaloguj się</div>
-                        <div style="float:right; font-color:#FFF; font-size: 80%; position: relative; top:-10px"><a href="password_reset.php"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="password_reset.php" style="font-color:#FFF;"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></div>
                     </div>
 
                     <div style="padding-top:30px" class="panel-body" >
