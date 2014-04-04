@@ -21,7 +21,7 @@ if (isset($login)) {
     }
 }
 ?>
-                    <div style="padding-top:5px" class="panel-body" >
+                    <div style="padding-top:30px" class="panel-body" >
                         <form id="loginform" class="form-horizontal" role="form" method="post" action="index.php">
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
