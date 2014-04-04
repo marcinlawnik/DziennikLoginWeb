@@ -43,8 +43,6 @@
             "register"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
           </div>
         </div>
-
-        <div class="form-group col-md-12 control c5"></div>
       </form>
     </div>
   </div>
