@@ -2,9 +2,9 @@
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type=
   "text/javascript">
 </script>
-
+<div class="container">
   <div class=
-  "container mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel panel-info c7"
+  "mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 panel panel-info c7"
   id="loginbox">
     <div class="panel-heading">
       <div class="panel-title">
@@ -48,7 +48,7 @@
       </form>
     </div>
   </div>
-
+</div>
 
 
 <?php include('_footer.php'); ?>
