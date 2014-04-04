@@ -6,8 +6,6 @@
                         <div class="panel-title">Zaloguj się</div>
                         <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="password_reset.php" style="color:#FFF;"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></div>
                     </div>
-
-                    <div style="padding-top:30px" class="panel-body" >
                     <?php
 // show potential errors / feedback (from login object)
 if (isset($login)) {
@@ -23,7 +21,7 @@ if (isset($login)) {
     }
 }
 ?>
-                        
+                    <div style="padding-top:5px" class="panel-body" >
                         <form id="loginform" class="form-horizontal" role="form" method="post" action="index.php">
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
