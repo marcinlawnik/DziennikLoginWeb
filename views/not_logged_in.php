@@ -28,7 +28,9 @@
                                 <div style="margin-top:10px" class="form-group">
                                     <div class="col-sm-12 controls">
                                     <input type="submit" id="btn-login" class="btn btn-success" name="login" value="<?php echo WORDING_LOGIN; ?>" />
-                                      <a id="btn-fblogin" href="register.php" class="btn btn-primary" style="display: inline-block;"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
+                                    </div>
+                                    <div style="display:inline-block;">
+                                    <a id="btn-fblogin" href="register.php" class="btn btn-primary"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
                                     </div>
                                 </div>
                             </form>
