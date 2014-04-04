@@ -18,7 +18,7 @@ if (isset($login)) {
     }
     if ($login->messages) {
         foreach ($login->messages as $message) {
-            echo $message;
+            echo '<div id="login-alert" class="alert alert-success col-sm-12">'.$message.'</div>';
         }
     }
 }
