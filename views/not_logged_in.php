@@ -10,6 +10,7 @@
 // show potential errors / feedback (from login object)
 if (isset($login)) {
     if ($login->errors) {
+        var_dump($login->errors);
         foreach ($login->errors as $error) {
             echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="margin-left:10px;margin-right:10px;">'.$error.'</div>';
         }
