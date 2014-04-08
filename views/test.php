@@ -1,5 +1,5 @@
 <?php include('_header_loggedin.php'); ?>
-var_dump($_SESSION['user_id']);
+<?php var_dump($_SESSION['user_id']); ?>
 <form action="test.php" method="post">
 <input type="submit" name="wyslij" value="Wyswietl" />
 Zaznacz wszystko:
