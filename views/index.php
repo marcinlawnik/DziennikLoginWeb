@@ -16,4 +16,4 @@ echo WORDING_PROFILE_PICTURE . '<br/>' . $login->user_gravatar_image_tag;
 </div>
 
 
-<?php include('_footer_logged.php'); ?>
+<?php include('_footer_loggedin.php'); ?>
