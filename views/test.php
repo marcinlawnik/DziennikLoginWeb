@@ -11,7 +11,8 @@ or die('Nie dziala'.mysql_error());
 $przedmioty = array();
 $skroty = array();
 $sb = mysqli_query($connection, "SELECT * FROM subjects");
-$subjcount = mysqli_num_rows($sb);
+$sbct = mysqli_query($connection, "SELECT count(*) FROM subjects");
+$subjcount = $sbct -> fetch_row();
 while($rek = mysqli_fetch_array($sb)) {
 $przedmioty[$rek['subjectId']] = $rek['subjectName'];
 }
