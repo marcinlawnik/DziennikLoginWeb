@@ -40,7 +40,7 @@ echo WORDING_PROFILE_PICTURE . '<br/>' . $login->user_gravatar_image_tag;
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Comments</a>
+                                        <span class="glyphicon glyphicon-home"></span><a href="http://www.jquery2dotnet.com">Comments</a>
                                         <span class="badge">42</span>
                                     </td>
                                 </tr>
