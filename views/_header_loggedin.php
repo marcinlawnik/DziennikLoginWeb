@@ -51,7 +51,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Brand</a>
+    <a class="navbar-brand" SRC="http://beta.lawniczak.me/logo_small.png"></a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
