@@ -143,7 +143,7 @@ class Login
                 $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
                 return true;
             } catch (PDOException $e) {
-                $this->errors[] = MESSAGE_DATABASE_ERROR . $e->getMessage();
+                $this->errors[] .= MESSAGE_DATABASE_ERROR . $e->getMessage();
             }
         }
         // default return
@@ -230,7 +230,7 @@ class Login
             }
             // A cookie has been used but is not valid... we delete it
             $this->deleteRememberMeCookie();
-            $this->errors[] = MESSAGE_COOKIE_INVALID;
+            $this->errors[] .= MESSAGE_COOKIE_INVALID;
         }
         return false;
     }
@@ -244,9 +244,9 @@ class Login
     private function loginWithPostData($user_name, $user_password, $user_rememberme)
     {
         if (empty($user_name)) {
-            $this->errors[] = MESSAGE_USERNAME_EMPTY;
+            $this->errors[] .= MESSAGE_USERNAME_EMPTY;
         } else if (empty($user_password)) {
-            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
+            $this->errors[] .= MESSAGE_PASSWORD_EMPTY;
 
         // if POST data (from login form) contains non-empty user_name and non-empty user_password
         } else {
@@ -270,9 +270,9 @@ class Login
             if (! isset($result_row->user_id)) {
                 // was MESSAGE_USER_DOES_NOT_EXIST before, but has changed to MESSAGE_LOGIN_FAILED
                 // to prevent potential attackers showing if the user exists
-                $this->errors[] = MESSAGE_LOGIN_FAILED;
+                $this->errors[] .= MESSAGE_LOGIN_FAILED;
             } else if (($result_row->user_failed_logins >= 3) && ($result_row->user_last_failed_login > (time() - 30))) {
-                $this->errors[] = MESSAGE_PASSWORD_WRONG_3_TIMES;
+                $this->errors[] .= MESSAGE_PASSWORD_WRONG_3_TIMES;
             // using PHP 5.5's password_verify() function to check if the provided passwords fits to the hash of that user's password
             } else if (! password_verify($user_password, $result_row->user_password_hash)) {
                 // increment the failed login counter for that user
@@ -281,10 +281,10 @@ class Login
                         . 'WHERE user_name = :user_name OR user_email = :user_name');
                 $sth->execute(array(':user_name' => $user_name, ':user_last_failed_login' => time()));
 
-                $this->errors[] = MESSAGE_PASSWORD_WRONG;
+                $this->errors[] .= MESSAGE_PASSWORD_WRONG;
             // has the user activated their account with the verification email
             } else if ($result_row->user_active != 1) {
-                $this->errors[] = MESSAGE_ACCOUNT_NOT_ACTIVATED;
+                $this->errors[] .= MESSAGE_ACCOUNT_NOT_ACTIVATED;
             } else {
                 // write user data into PHP SESSION [a file on your server]
                 $_SESSION['user_id'] = $result_row->user_id;
@@ -412,19 +412,19 @@ class Login
         $user_name = substr(trim($user_name), 0, 64);
 
         if (!empty($user_name) && $user_name == $_SESSION['user_name']) {
-            $this->errors[] = MESSAGE_USERNAME_SAME_LIKE_OLD_ONE;
+            $this->errors[] .= MESSAGE_USERNAME_SAME_LIKE_OLD_ONE;
 
         // username cannot be empty and must be azAZ09 and 2-64 characters
         // TODO: maybe this pattern should also be implemented in Registration.php (or other way round)
         } elseif (empty($user_name) || !preg_match("/^(?=.{2,64}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$/", $user_name)) {
-            $this->errors[] = MESSAGE_USERNAME_INVALID;
+            $this->errors[] .= MESSAGE_USERNAME_INVALID;
 
         } else {
             // check if new username already exists
             $result_row = $this->getUserData($user_name);
 
             if (isset($result_row->user_id)) {
-                $this->errors[] = MESSAGE_USERNAME_EXISTS;
+                $this->errors[] .= MESSAGE_USERNAME_EXISTS;
             } else {
                 // write user's new data into database
                 $query_edit_user_name = $this->db_connection->prepare('UPDATE users SET user_name = :user_name WHERE user_id = :user_id');
@@ -436,7 +436,7 @@ class Login
                     $_SESSION['user_name'] = $user_name;
                     $this->messages[] = MESSAGE_USERNAME_CHANGED_SUCCESSFULLY . $user_name;
                 } else {
-                    $this->errors[] = MESSAGE_USERNAME_CHANGE_FAILED;
+                    $this->errors[] .= MESSAGE_USERNAME_CHANGE_FAILED;
                 }
             }
         }
@@ -451,10 +451,10 @@ class Login
         $user_email = substr(trim($user_email), 0, 64);
 
         if (!empty($user_email) && $user_email == $_SESSION["user_email"]) {
-            $this->errors[] = MESSAGE_EMAIL_SAME_LIKE_OLD_ONE;
+            $this->errors[] .= MESSAGE_EMAIL_SAME_LIKE_OLD_ONE;
         // user mail cannot be empty and must be in email format
         } elseif (empty($user_email) || !filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[] = MESSAGE_EMAIL_INVALID;
+            $this->errors[] .= MESSAGE_EMAIL_INVALID;
 
         } else if ($this->databaseConnection()) {
             // check if new email already exists
@@ -466,7 +466,7 @@ class Login
 
             // if this email exists
             if (isset($result_row->user_id)) {
-                $this->errors[] = MESSAGE_EMAIL_ALREADY_EXISTS;
+                $this->errors[] .= MESSAGE_EMAIL_ALREADY_EXISTS;
             } else {
                 // write users new data into database
                 $query_edit_user_email = $this->db_connection->prepare('UPDATE users SET user_email = :user_email WHERE user_id = :user_id');
@@ -476,9 +476,9 @@ class Login
 
                 if ($query_edit_user_email->rowCount()) {
                     $_SESSION['user_email'] = $user_email;
-                    $this->messages[] = MESSAGE_EMAIL_CHANGED_SUCCESSFULLY . $user_email;
+                    $this->messages[] .= MESSAGE_EMAIL_CHANGED_SUCCESSFULLY . $user_email;
                 } else {
-                    $this->errors[] = MESSAGE_EMAIL_CHANGE_FAILED;
+                    $this->errors[] .= MESSAGE_EMAIL_CHANGE_FAILED;
                 }
             }
         }
@@ -490,13 +490,13 @@ class Login
     public function editUserPassword($user_password_old, $user_password_new, $user_password_repeat)
     {
         if (empty($user_password_new) || empty($user_password_repeat) || empty($user_password_old)) {
-            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
+            $this->errors[] .= MESSAGE_PASSWORD_EMPTY;
         // is the repeat password identical to password
         } elseif ($user_password_new !== $user_password_repeat) {
-            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
+            $this->errors[] .= MESSAGE_PASSWORD_BAD_CONFIRM;
         // password need to have a minimum length of 6 characters
         } elseif (strlen($user_password_new) < 6) {
-            $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
+            $this->errors[] .= MESSAGE_PASSWORD_TOO_SHORT;
 
         // all the above tests are ok
         } else {
@@ -527,15 +527,15 @@ class Login
 
                     // check if exactly one row was successfully changed:
                     if ($query_update->rowCount()) {
-                        $this->messages[] = MESSAGE_PASSWORD_CHANGED_SUCCESSFULLY;
+                        $this->messages[] .= MESSAGE_PASSWORD_CHANGED_SUCCESSFULLY;
                     } else {
-                        $this->errors[] = MESSAGE_PASSWORD_CHANGE_FAILED;
+                        $this->errors[] .= MESSAGE_PASSWORD_CHANGE_FAILED;
                     }
                 } else {
-                    $this->errors[] = MESSAGE_OLD_PASSWORD_WRONG;
+                    $this->errors[] .= MESSAGE_OLD_PASSWORD_WRONG;
                 }
             } else {
-                $this->errors[] = MESSAGE_USER_DOES_NOT_EXIST;
+                $this->errors[] .= MESSAGE_USER_DOES_NOT_EXIST;
             }
         }
     }
@@ -549,7 +549,7 @@ class Login
         $user_name = trim($user_name);
 
         if (empty($user_name)) {
-            $this->errors[] = MESSAGE_USERNAME_EMPTY;
+            $this->errors[] .= MESSAGE_USERNAME_EMPTY;
 
         } else {
             // generate timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
@@ -578,10 +578,10 @@ class Login
                     $this->sendPasswordResetMail($user_name, $result_row->user_email, $user_password_reset_hash);
                     return true;
                 } else {
-                    $this->errors[] = MESSAGE_DATABASE_ERROR;
+                    $this->errors[] .= MESSAGE_DATABASE_ERROR;
                 }
             } else {
-                $this->errors[] = MESSAGE_USER_DOES_NOT_EXIST;
+                $this->errors[] .= MESSAGE_USER_DOES_NOT_EXIST;
             }
         }
         // return false (this method only returns true when the database entry has been set successfully)
@@ -626,10 +626,10 @@ class Login
         $mail->Body = EMAIL_PASSWORDRESET_CONTENT . ' ' . $link;
 
         if(!$mail->Send()) {
-            $this->errors[] = MESSAGE_PASSWORD_RESET_MAIL_FAILED . $mail->ErrorInfo;
+            $this->errors[] .= MESSAGE_PASSWORD_RESET_MAIL_FAILED . $mail->ErrorInfo;
             return false;
         } else {
-            $this->messages[] = MESSAGE_PASSWORD_RESET_MAIL_SUCCESSFULLY_SENT;
+            $this->messages[] .= MESSAGE_PASSWORD_RESET_MAIL_SUCCESSFULLY_SENT;
             return true;
         }
     }
@@ -642,7 +642,7 @@ class Login
         $user_name = trim($user_name);
 
         if (empty($user_name) || empty($verification_code)) {
-            $this->errors[] = MESSAGE_LINK_PARAMETER_EMPTY;
+            $this->errors[] .= MESSAGE_LINK_PARAMETER_EMPTY;
         } else {
             // database query, getting all the info of the selected user
             $result_row = $this->getUserData($user_name);
@@ -656,10 +656,10 @@ class Login
                     // set the marker to true, making it possible to show the password reset edit form view
                     $this->password_reset_link_is_valid = true;
                 } else {
-                    $this->errors[] = MESSAGE_RESET_LINK_HAS_EXPIRED;
+                    $this->errors[] .= MESSAGE_RESET_LINK_HAS_EXPIRED;
                 }
             } else {
-                $this->errors[] = MESSAGE_USER_DOES_NOT_EXIST;
+                $this->errors[] .= MESSAGE_USER_DOES_NOT_EXIST;
             }
         }
     }
@@ -673,13 +673,13 @@ class Login
         $user_name = trim($user_name);
 
         if (empty($user_name) || empty($user_password_reset_hash) || empty($user_password_new) || empty($user_password_repeat)) {
-            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
+            $this->errors[] .= MESSAGE_PASSWORD_EMPTY;
         // is the repeat password identical to password
         } else if ($user_password_new !== $user_password_repeat) {
-            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
+            $this->errors[] .= MESSAGE_PASSWORD_BAD_CONFIRM;
         // password need to have a minimum length of 6 characters
         } else if (strlen($user_password_new) < 6) {
-            $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
+            $this->errors[] .= MESSAGE_PASSWORD_TOO_SHORT;
         // if database connection opened
         } else if ($this->databaseConnection()) {
             // now it gets a little bit crazy: check if we have a constant HASH_COST_FACTOR defined (in config/hashing.php),
@@ -704,9 +704,9 @@ class Login
             // check if exactly one row was successfully changed:
             if ($query_update->rowCount() == 1) {
                 $this->password_reset_was_successful = true;
-                $this->messages[] = MESSAGE_PASSWORD_CHANGED_SUCCESSFULLY;
+                $this->messages[] .= MESSAGE_PASSWORD_CHANGED_SUCCESSFULLY;
             } else {
-                $this->errors[] = MESSAGE_PASSWORD_CHANGE_FAILED;
+                $this->errors[] .= MESSAGE_PASSWORD_CHANGE_FAILED;
             }
         }
     }
