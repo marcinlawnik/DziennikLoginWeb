@@ -51,7 +51,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <img HEIGHT="80%" WIDTH="80%" class="navbar-brand" SRC="http://beta.lawniczak.me/logo_small.png"></img>
+    <img height="70%" width="70%" src="http://beta.lawniczak.me/logo_small.png" style="margin:0.25em;"></img>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
