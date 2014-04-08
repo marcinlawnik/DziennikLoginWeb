@@ -70,9 +70,10 @@
           <li class="divider"></li>
           <li><a href="#">One more separated link</a></li>
             </ul>
-            <li><a href="login.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
+            <ul class="nav navbar-nav navbar-right">
           <li><a href="edit.php"><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
-         <li><a href="index.php">Strona Główna</a></li>
+          <li><a href="login.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
+          </ul>
       </li>
     </ul>
     
