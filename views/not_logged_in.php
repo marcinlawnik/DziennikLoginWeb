@@ -59,7 +59,7 @@ if (isset($registration)) {
                                     <input type="submit" id="btn-login" class="btn btn-success" name="login" value="<?php echo WORDING_LOGIN; ?>" />
                                     </div>
                                 <div class="col-sm-10 controls">
-                                <a id="btn-fblogin" href="register.php" class="btn btn-primary"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
+                                <a id="btn-fblogin" href="http://beta.lawniczak.me/joinBeta.php" class="btn btn-primary"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></a>
                             </div>
                                 </div>
                             </form>
