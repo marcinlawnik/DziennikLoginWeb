@@ -16,7 +16,7 @@ echo WORDING_PROFILE_PICTURE . '<br/>' . $login->user_gravatar_image_tag;
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-headphones-close">
                             </span>Content</a>
                         </h4>
                     </div>
