@@ -6,19 +6,33 @@
                         <div class="panel-title">Zaloguj się</div>
                         <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="password_reset.php" style="color:#FFF;"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></div>
                     </div>
-                    <?php
-                            var_dump($login->errors);
+<?php
 // show potential errors / feedback (from login object)
 if (isset($login)) {
     if ($login->errors) {
-
         foreach ($login->errors as $error) {
-            echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="margin-left:10px;margin-right:10px;">'.$error.'</div>';
+            echo $error;
         }
     }
     if ($login->messages) {
         foreach ($login->messages as $message) {
-            echo '<div id="login-alert" class="alert alert-success col-sm-12 style="margin-left:10px;margin-right:10px;">'.$message.'</div>';
+            echo $message;
+        }
+    }
+}
+?>
+
+<?php
+// show potential errors / feedback (from registration object)
+if (isset($registration)) {
+    if ($registration->errors) {
+        foreach ($registration->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($registration->messages) {
+        foreach ($registration->messages as $message) {
+            echo $message;
         }
     }
 }
