@@ -1,4 +1,4 @@
-//VIEW
+
 <?php include('_header.php'); ?>
 
 <!-- clean separation of HTML and PHP -->
