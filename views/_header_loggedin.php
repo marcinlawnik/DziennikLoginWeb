@@ -77,7 +77,7 @@
     <ul class="nav navbar-nav navbar-right">
           <li><a href="edit.php" ><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
           <li><a><?php echo  $_SESSION['user_name'];?></a></li>
-          <li><a><?php echo  '<br/>' . $login->user_gravatar_image_tag;?></a></li>
+          <li><a><?php echo   . $login->user_gravatar_image_tag;?></a></li>
           <li><a href="login.php?logout"><span class="glyphicon glyphicon-off"></span></a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
