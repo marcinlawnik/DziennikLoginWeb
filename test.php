@@ -1,158 +1,35 @@
-<?php include('_header_loggedin.php'); ?>
+<?php
 
+// check for minimum PHP version
+if (version_compare(PHP_VERSION, '5.3.7', '<')) {
+    exit('Sorry, this script does not run on a PHP version smaller than 5.3.7 !');
+} else if (version_compare(PHP_VERSION, '5.5.0', '<')) {
+    // if you are using PHP 5.3 or PHP 5.4 you have to include the password_api_compatibility_library.php
+    // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
+    require_once('libraries/password_compatibility_library.php');
+}
+// include the config
+require_once('config/config.php');
 
-<div class="container">
-    <div style="align:right;" class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-headphones">
-                            </span>Przedmiot</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-headphones text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">News</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Newsletters</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-home"></span><a href="http://www.jquery2dotnet.com">Comments</a>
-                                        <span class="badge">42</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-trash">
-                            </span>Modules</a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Invoices</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Shipments</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Tex</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
-                            </span>Account</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Change Password</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Notifications</a> <span class="label label-info">5</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Import/Export</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-trash text-danger"></span><a href="http://www.jquery2dotnet.com" class="text-danger">
-                                            Delete Account</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
-                            </span>Reports</a>
-                        </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-9 col-md-9">
-            <div class="well">
-                <h1>
-                    Accordion Menu With Icon</h1>
-                Admin Dashboard Accordion Menu
-            </div>
-        </div>
-    </div>
-</div>
+// include the to-be-used language, english by default. feel free to translate your project and include something else
+require_once('translations/pl.php');
 
-<?php include('_footer_loggedin.php'); ?>
+// include the PHPMailer library
+require_once('libraries/PHPMailer.php');
+
+// load the login class
+require_once('classes/Login.php');
+
+// create a login object. when this object is created, it will do all login/logout stuff automatically
+// so this single line handles the entire login process.
+$login = new Login();
+
+// ... ask if we are logged in here:
+if ($login->isUserLoggedIn() == true) {
+    // the user is logged in. you can do whatever you want here.
+    // for demonstration purposes, we simply show the "you are logged in" view.
+    include("views/test.php");
+
+} else {
+    header('Location: login.php');
+}
