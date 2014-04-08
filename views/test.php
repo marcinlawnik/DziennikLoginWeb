@@ -1,6 +1,6 @@
 <?php include('_header_loggedin.php'); ?>
 
-<form action="index.php" method="post">
+<form action="test.php" method="post">
 <input type="submit" name="wyslij" value="Wyswietl" />
 Zaznacz wszystko:
 <input type="checkbox" name="wyczysc" checked='checked' value="Wyczysc" onclick="var w = document.getElementsByTagName('input'); for(var i = 0; i < w.length; i++){ if(w[i].value=='przedmioty'){ w[i].checked = this.checked;};};"/>
@@ -23,7 +23,7 @@ echo "<input type='checkbox' checked='checked' name='".$i."'
 
 value='przedmioty'/>".$przedmioty[$i];
 }
-
+echo '</form>';
 echo "<hr>";
 
 $sb = mysqli_query($connection, "SELECT * FROM grades ORDER BY gradeAbbrev ASC");
@@ -90,8 +90,6 @@ echo "</table>";
 
 ?>
 
-
-</form>
 
 
 <?php include('_footer_loggedin.php'); ?>\
