@@ -77,7 +77,7 @@
     <ul class="nav navbar-nav navbar-right">
           <li><a href="edit.php"><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
           <li><a href="login.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
-      <li><p><?php echo  $_SESSION['user_name'];?></p></li>
+          <li><span>><?php echo  $_SESSION['user_name'];?></span></li>
       
     </ul>
   </div><!-- /.navbar-collapse -->
