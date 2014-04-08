@@ -1,5 +1,4 @@
-
-<?php include('_header.php'); ?>
+<?php include('_header_loggedin.php'); ?>
 
 <!-- clean separation of HTML and PHP -->
 <p>This is the main pageeee.</p>
@@ -17,4 +16,4 @@ echo WORDING_PROFILE_PICTURE . '<br/>' . $login->user_gravatar_image_tag;
 </div>
 
 
-<?php include('_footer.php'); ?>
+<?php include('_footer_logged.php'); ?>
