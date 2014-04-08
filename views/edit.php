@@ -1,4 +1,4 @@
-<?php include('_header.php'); ?>
+<?php include('_header_loggedin.php'); ?>
 
 <!-- clean separation of HTML and PHP -->
 <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
@@ -34,4 +34,4 @@
 <!-- backlink -->
 <a href="index.php">Strona Główna</a>
 
-<?php include('_footer.php'); ?>
+<?php include('_footer_loggedin.php'); ?>
