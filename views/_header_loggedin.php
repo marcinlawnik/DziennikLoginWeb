@@ -75,7 +75,6 @@
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
-          <li><a href="edit.php" ><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
           <li class="<?php echo  $_SESSION['user_name'];?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $_SESSION['user_name'];?><b class="caret"></b></a>
           <ul class="dropdown-menu"></li>
