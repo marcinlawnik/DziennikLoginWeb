@@ -7,10 +7,11 @@
                         <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="password_reset.php" style="color:#FFF;"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></div>
                     </div>
                     <?php
+                            var_dump($login->errors);
 // show potential errors / feedback (from login object)
 if (isset($login)) {
     if ($login->errors) {
-        var_dump($login->errors);
+
         foreach ($login->errors as $error) {
             echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="margin-left:10px;margin-right:10px;">'.$error.'</div>';
         }
