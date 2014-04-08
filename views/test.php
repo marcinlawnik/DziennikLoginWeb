@@ -5,7 +5,7 @@
 Zaznacz wszystko:
 <input type="checkbox" name="wyczysc" checked='checked' value="Wyczysc" onclick="var w = document.getElementsByTagName('input'); for(var i = 0; i < w.length; i++){ if(w[i].value=='przedmioty'){ w[i].checked = this.checked;};};"/>
 <?php
-$connection = @mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) 
+$connection = @mysqli_connect(DB_HOST2, DB_USER2, DB_PASS2, DB_NAME2) 
 or die('Nie dziala'.mysql_error()); 
 
 $przedmioty = array();
