@@ -77,9 +77,10 @@
     <ul class="nav navbar-nav navbar-right">
           <li><a href="edit.php" ><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
           <li class="<?php echo  $_SESSION['user_name'];?>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo  $_SESSION['user_name'];?><b class="caret"></b></a>
           <ul class="dropdown-menu"></li>
           <li><a href="edit.php" ><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
+          </ul>
           <li><?php echo  $login->user_gravatar_image_tag;?></li>
           <li><a href="login.php?logout"><span class="glyphicon glyphicon-off"></span></a></li>
     </ul>
