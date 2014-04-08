@@ -13,7 +13,7 @@ $skroty = array();
 $sb = mysqli_query($connection, "SELECT * FROM subjects");
 $subjcount = mysqli_num_rows($sb);
 while($rek = mysqli_fetch_array($sb)) {
-$przedmioty[$rek[subjectId]] = $rek[subjectName];
+$przedmioty[$rek['subjectId']] = $rek['subjectName'];
 }
 for($i=1; $i<=$subjcount[0]; $i++) {
 echo "<input type='checkbox' checked='checked' name='".$i."' 
@@ -27,9 +27,9 @@ $sb = mysqli_query($connection, "SELECT * FROM grades ORDER BY gradeAbbrev ASC")
 $sk = 0;
 $ostatni_skrot="";
 while($rek = mysqli_fetch_array($sb)) {
-if($ostatni_skrot != $rek[gradeAbbrev]) {
-$skroty[$sk] = $rek[gradeAbbrev];
-$ostatni_skrot = $rek[gradeAbbrev];
+if($ostatni_skrot != $rek['gradeAbbrev']) {
+$skroty[$sk] = $rek['gradeAbbrev'];
+$ostatni_skrot = $rek['gradeAbbrev'];
 $sk++;
 }
 }
