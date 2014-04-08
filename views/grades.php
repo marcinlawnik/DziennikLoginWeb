@@ -25,7 +25,7 @@ echo WORDING_PROFILE_PICTURE . '<br/>' . $login->user_gravatar_image_tag;
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
+                                        <span class="glyphicon glyphicon-headphones text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
                                     </td>
                                 </tr>
                                 <tr>
