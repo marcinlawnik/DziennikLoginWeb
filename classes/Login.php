@@ -114,7 +114,7 @@ class Login
         } elseif (isset($_GET["user_name"]) && isset($_GET["verification_code"])) {
             $this->checkIfEmailVerificationCodeIsValid($_GET["user_name"], $_GET["verification_code"]);
         } elseif (isset($_POST["submit_new_password"])) {
-            $this->editNewPassword($_POST['user_name'], $_POST['user_password_reset_hash'], $_POST['user_password_new'], $_POST['user_password_repeat']);
+            $this->editNewPassword($_POST['user_name'e], $_POST['user_password_reset_hash'], $_POST['user_password_new'], $_POST['user_password_repeat']);
         }
 
         // get gravatar profile picture if user is logged in
@@ -368,7 +368,7 @@ class Login
     private function deleteRememberMeCookie()
     {
         // if database connection opened
-        if ($this->databaseConnection() && isset($_SESSION['user_id'])) {
+        if ($this->databaseConnection()) {// && isset($_SESSION['user_id'])
             // Reset rememberme token
             $sth = $this->db_connection->prepare("UPDATE users SET user_rememberme_token = NULL WHERE user_id = :user_id");
             $sth->execute(array(':user_id' => $_SESSION['user_id']));
