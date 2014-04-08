@@ -75,7 +75,7 @@
     </ul>
     
     <ul class="nav navbar-nav navbar-right">
-          <li><a href="edit.php"><span class="glyphicon glyphicon-off"></span><?php echo WORDING_EDIT_USER_DATA; ?></a></li>
+          <li><a href="edit.php" ><span class="glyphicon glyphicon-off"></span></a></li>
           <li><a href="login.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
           <li><a><?php echo  $_SESSION['user_name'];?></a></li>
       
