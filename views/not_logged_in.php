@@ -11,28 +11,12 @@
 if (isset($login)) {
     if ($login->errors) {
         foreach ($login->errors as $error) {
-            echo $error;
+            echo '<div id="login-alert" class="alert alert-danger col-sm-12" style="padding:10px;">'.$error.'</div>';
         }
     }
     if ($login->messages) {
         foreach ($login->messages as $message) {
-            echo $message;
-        }
-    }
-}
-?>
-
-<?php
-// show potential errors / feedback (from registration object)
-if (isset($registration)) {
-    if ($registration->errors) {
-        foreach ($registration->errors as $error) {
-            echo $error;
-        }
-    }
-    if ($registration->messages) {
-        foreach ($registration->messages as $message) {
-            echo $message;
+            echo '<div id="login-alert" class="alert alert-success col-sm-12 style="padding:10px;"">'.$message.'</div>';
         }
     }
 }
