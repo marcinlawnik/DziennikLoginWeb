@@ -38,7 +38,7 @@ if (isset($registration)) {
 }
 ?>
                     <div style="padding-top:30px" class="panel-body" >
-                        <form id="loginform" class="form-horizontal" role="form" method="post" action="index.php">
+                        <form id="loginform" class="form-horizontal" role="form" method="post" action="login.php">
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <input id="user_name" type="text" name="user_name" required class="form-control" value="" placeholder="<?php echo WORDING_USERNAME; ?>">
