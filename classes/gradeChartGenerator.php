@@ -1,9 +1,9 @@
 <?php
 
 /* Include all the classes */
-include("../libraries/pchart/class/pDraw.class.php");
-include("../libraries/pchart/class/pImage.class.php");
-include("../libraries/pchart/class/pData.class.php");
+include(dirname(__FILE__)."../libraries/pchart/class/pDraw.class.php");
+include(dirname(__FILE__)."../libraries/pchart/class/pImage.class.php");
+include(dirname(__FILE__)."../libraries/pchart/class/pData.class.php");
 
 use \PDO;
 use \Exception;
