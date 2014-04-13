@@ -107,7 +107,8 @@ class graphReportGenerator {
         /* Define the boundaries of the graph area */
         $myPicture->setGraphArea(60, 40, 670, 190);
         /* Choose a nice font */
-        $myPicture->setFontProperties(array("FontName" => "classes/pChart/fonts/pf_arma_five.ttf", "FontSize" => 11));
+        $fontPath = dirname(__FILE__).'/../libraries/pchart/fonts/pf_arma_five.ttf';
+        $myPicture->setFontProperties(array("FontName" => "$fontPath", "FontSize" => 11));
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
         /* Draw the scale, keep everything automatic */
         $myPicture->drawScale();
