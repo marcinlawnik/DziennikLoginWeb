@@ -111,7 +111,7 @@ class graphReportGenerator {
         $myPicture->setFontProperties(array("FontName" => "$fontPath", "FontSize" => 11));
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
         /* Draw the scale, keep everything automatic */
-        $myPicture->drawScale();
+        $myPicture->drawScale(array('Mode' => SCALE_MODE_START0));
         /* Create the per bar palette */ //as per http://ideone.com/vWSh6o nope
          $Palette = array("0" => array("R" => 255, "G" => 0, "B" => 0, "Alpha" => 100),//FF0000 don
               "1" => array("R" => 255, "G" => 51, "B" => 0, "Alpha" => 100),//FF3300 don
