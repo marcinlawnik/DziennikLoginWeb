@@ -135,7 +135,7 @@ class graphReportGenerator {
 
     private function getDataForChart() {
         try {
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = 2');
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = 3');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
