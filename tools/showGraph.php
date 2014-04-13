@@ -25,7 +25,7 @@ $login = new Login();
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
     $chartGenerator = new graphReportGenerator();
-    $chartGenerator->setDatabaseConnectionData("DB_HOST2", "DB_NAME2", "DB_USER2", "DB_PASS2");
+    $chartGenerator->setDatabaseConnectionData(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
     $chartGenerator->setUserId($_SESSION['user_id']);
     $chartGenerator->executeProcessing();
 } else {
