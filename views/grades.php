@@ -167,9 +167,128 @@
         </div>
         <div class="col-sm-9 col-md-9">
             <div class="well">
-                <h1>
-                    Accordion Menu With Icon</h1>
-                Admin Dashboard Accordion Menu
+                <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Ocena</th>
+
+        <th>Waga</th>
+
+        <th>Grupa</th>
+
+        <th>Tytuł</th>
+
+        <th>Data</th>
+
+        <th>Przedmiot</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class=" even">
+        <td class="gradeValue"><span>3</span></td>
+
+        <td class="gradeWeight"><span>3</span></td>
+
+        <td class="gradeGroup"><span>egzamin pr&oacute;bny</span></td>
+
+        <td class="gradeTitle"><span>Egzamin z do&#347;wiadcze&#324;
+        chemicznych.</span></td>
+
+        <td class="gradeDate"><span>2014-04-04</span></td>
+
+        <td class="subjectName"><span>chemia</span></td>
+      </tr>
+
+      <tr class=" odd">
+        <td class="gradeValue"><span>5</span></td>
+
+        <td class="gradeWeight"><span>2</span></td>
+
+        <td class="gradeGroup"><span>skomplikowane zadanie domowe</span></td>
+
+        <td class="gradeTitle"><span>Test powt&oacute;rzeniowy - substancje i ich
+        przemiany oraz budowa materii.</span></td>
+
+        <td class="gradeDate"><span>2014-04-09</span></td>
+
+        <td class="subjectName"><span>chemia</span></td>
+      </tr>
+
+      <tr class=" even">
+        <td class="gradeValue"><span>6</span></td>
+
+        <td class="gradeWeight"><span>3</span></td>
+
+        <td class="gradeGroup"><span>egzamin pr&oacute;bny</span></td>
+
+        <td class="gradeTitle"><span>EPR, egzamin z do&#347;wiadcze&#324;
+        fizycznych</span></td>
+
+        <td class="gradeDate"><span>2014-04-03</span></td>
+
+        <td class="subjectName"><span>fizyka</span></td>
+      </tr>
+
+      <tr class=" odd">
+        <td class="gradeValue"><span>3.5</span></td>
+
+        <td class="gradeWeight"><span>4</span></td>
+
+        <td class="gradeGroup"><span>prace klasowe</span></td>
+
+        <td class="gradeTitle"><span>PK1, us&#322;ugi w Polsce, powt&oacute;rzenie do
+        matury</span></td>
+
+        <td class="gradeDate"><span>2014-04-03</span></td>
+
+        <td class="subjectName"><span>geografia</span></td>
+      </tr>
+
+      <tr class=" even">
+        <td class="gradeValue"><span>4.5</span></td>
+
+        <td class="gradeWeight"><span>1</span></td>
+
+        <td class="gradeGroup"><span>kartk&oacute;wki</span></td>
+
+        <td class="gradeTitle"><span>opis sytuacji</span></td>
+
+        <td class="gradeDate"><span>2014-04-07</span></td>
+
+        <td class="subjectName"><span>j. polski</span></td>
+      </tr>
+
+      <tr class=" odd">
+        <td class="gradeValue"><span>3</span></td>
+
+        <td class="gradeWeight"><span>1</span></td>
+
+        <td class="gradeGroup"><span>kartk&oacute;wki</span></td>
+
+        <td class="gradeTitle"><span>1. kartk&oacute;wka po om&oacute;wieniu iii
+        pr&oacute;by gimnazjalnej</span></td>
+
+        <td class="gradeDate"><span>2014-04-02</span></td>
+
+        <td class="subjectName"><span>matematyka</span></td>
+      </tr>
+
+      <tr class=" even">
+        <td class="gradeValue"><span>4.5</span></td>
+
+        <td class="gradeWeight"><span>1</span></td>
+
+        <td class="gradeGroup"><span>kartk&oacute;wki</span></td>
+
+        <td class="gradeTitle"><span>1</span></td>
+
+        <td class="gradeDate"><span>2014-04-08</span></td>
+
+        <td class="subjectName"><span>j. angielski z</span></td>
+      </tr>
+    </tbody>
+  </table>
             </div>
         </div>
     </div>
