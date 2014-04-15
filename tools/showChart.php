@@ -24,12 +24,9 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
-    
     $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
-    $x=$chartGenerator->getCurrentTrimester();
-    echo $x;
-    //$chartGenerator->setUserId($_SESSION['user_id']);
-    //$chartGenerator->executeProcessing();
+    $chartGenerator->setUserId($_SESSION['user_id']);
+    $chartGenerator->executeProcessing();
 } else {
     header('Location: login.php');
 }

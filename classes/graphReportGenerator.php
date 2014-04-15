@@ -36,10 +36,10 @@ class graphReportGenerator {
     private $userId;
     
     /**
-     * The type of chart to be generated
+     * The subject of chart to be generated
      * @var string
      */
-    private $chartType;
+    private $chartSubject;
     
     /**
      * Self-explanatory
@@ -83,9 +83,19 @@ class graphReportGenerator {
      */
     private $currentTrimester;
     
+    /**
+     * Trimester for which the chart is generated
+     * @var string
+     */
+    private $chartTrimester;
+    
+    /**
+     * Array with subjects which the user has
+     * @var array
+     */
+    private $userSubjects;
     
     
-
     public function __construct($databaseHost, $databaseName, $databaseUsername, $databasePassword) {
         $this->databaseHost = $databaseHost;
         $this->databaseName = $databaseName;
@@ -105,15 +115,19 @@ class graphReportGenerator {
         $this->userId = $userId;
     }
     
-    public function setChartType($chartType) {
-        $this->chartType = $chartType;
+    public function setChartSubject($chartSubject) {
+        $this->chartSubject = $chartSubject;
+    }
+    
+    public function setChartTrimester($chartTrimester) {
+        $this->chartTrimester = $chartTrimester;
     }
     
      
     /**
      * Function to determine current trimester
      * 
-     * Simply selects the gradeTrimester cond with the newest grade
+     * Simply selects the gradeTrimester with the newest grade
      * 
      * @throws Exception
      * @return string
@@ -129,11 +143,46 @@ class graphReportGenerator {
         }
         return $this->currentTrimester[0];
     }
+    
+    /**
+     * Function to get list of grades
+     * 
+     * Simply selects the gradeTrimester with the newest grade
+     * 
+     * @throws Exception
+     * @return string
+     * 
+     */
+    public function getSubjectsArray(){
+        try {
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT DISTINCT subjectId FROM grades WHERE userId=:userId');
+            $queryHandleSelect->bindParam(':userId', $this->userId);
+            $queryHandleSelect->execute();
+            $this->userSubjects = $queryHandleSelect->fetch();
+        } catch (PDOException $e) {
+            throw new Exception('Błąd bazy danych:' . $e->getMessage());
+        }
+        return $this->userSubjects;
+    }
 
     private function getDataForChart() {
         try {
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = 3');
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             $queryHandleSelect->bindParam(':userId', $this->userId);
+            //bind trimester
+            if(!isset($this->chartTrimester) || $this->chartTrimester != 1 || 2 || 3){
+                $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); 
+            }
+            else{
+                $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
+            }
+            //bind subject
+            if(!isset($this->chartSubject) || in_array($this->chartSubject, $this->userSubjects)){
+                $queryHandleSelect->bindParam(':subjectId', 'subjectId'); 
+            }
+            else{
+                $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
+            }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
