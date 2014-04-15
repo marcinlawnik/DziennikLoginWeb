@@ -168,7 +168,7 @@ class graphReportGenerator {
 
     private function getDataForChart() {
         try {
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             //bind trimester
             if($this->chartTrimester == NULL){
@@ -178,12 +178,12 @@ class graphReportGenerator {
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
             }
             //bind subject
-            //if($this->chartSubject == NULL){// || !in_array($this->chartSubject, $this->userSubjects)
-                //$queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId'); 
-            //}
-            //else{
-            //    $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
-            //}
+            if($this->chartSubject == NULL){// || !in_array($this->chartSubject, $this->userSubjects)
+                $queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId'); 
+            }
+            else{
+                $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
+            }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
