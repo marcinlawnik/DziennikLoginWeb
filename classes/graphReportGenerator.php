@@ -183,7 +183,7 @@ class graphReportGenerator {
             else{
                 $this->chartSubject = 'subjectId'; 
             }
-            $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
+            $queryHandleSelect->bindValue(':subjectId', $this->chartSubject); 
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
