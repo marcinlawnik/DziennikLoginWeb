@@ -26,7 +26,9 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
     $chartGenerator->setUserId($_SESSION['user_id']);
+    $chartGenerator->getCurrentTrimester();
+    $chartGenerator->getSubjectsArray();
     $chartGenerator->executeProcessing();
 } else {
-    header('Location: login.php');
+    header('Location: http://dl.lawniczak.me/login.php');
 }
