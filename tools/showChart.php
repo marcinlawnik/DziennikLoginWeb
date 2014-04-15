@@ -26,7 +26,8 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     
     $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
-    echo $chartGenerator->getCurrentTrimester();
+    $x=$chartGenerator->getCurrentTrimester();
+    echo $x;
     //$chartGenerator->setUserId($_SESSION['user_id']);
     //$chartGenerator->executeProcessing();
 } else {
