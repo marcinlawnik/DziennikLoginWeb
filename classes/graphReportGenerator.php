@@ -179,11 +179,11 @@ class graphReportGenerator {
             }
             //bind subject 
             if($this->chartSubject != NULL && !in_array($this->chartSubject, $this->userSubjects)){// 
-                $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
             }
             else{
-                $queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId',PDO::PARAM_STR); 
+                $this->chartSubject = 'subjectId'; 
             }
+            $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
