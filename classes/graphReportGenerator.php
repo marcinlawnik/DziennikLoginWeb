@@ -177,8 +177,8 @@ class graphReportGenerator {
             else{
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
             }
-            //bind subject
-            if($this->chartSubject != NULL){// || !in_array($this->chartSubject, $this->userSubjects)
+            //bind subject 
+            if($this->chartSubject != NULL && !in_array($this->chartSubject, $this->userSubjects)){// 
                 $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
             }
             //else{
