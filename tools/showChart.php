@@ -14,7 +14,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 
 // include the PHPMailer library
 require_once(dirname(__FILE__).'/../libraries/PHPMailer.php');
-    require dirname(__FILE__).'/../classes/gradeChartGenerator.php';
+    require dirname(__FILE__).'/../classes/graphReportGenerator.php';
 // load the login class
 require_once(dirname(__FILE__).'/../classes/Login.php');
 
@@ -24,10 +24,11 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
-    $chartGenerator = new graphReportGenerator();
-    $chartGenerator->setDatabaseConnectionData(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
-    $chartGenerator->setUserId($_SESSION['user_id']);
-    $chartGenerator->executeProcessing();
+    
+    $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
+    echo $chartGenerator->getCurrentTrimester();
+    //$chartGenerator->setUserId($_SESSION['user_id']);
+    //$chartGenerator->executeProcessing();
 } else {
     header('Location: login.php');
 }

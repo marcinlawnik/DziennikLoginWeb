@@ -34,7 +34,13 @@ class graphReportGenerator {
      * @var string
      */
     private $userId;
-
+    
+    /**
+     * The type of chart to be generated
+     * @var string
+     */
+    private $chartType;
+    
     /**
      * Self-explanatory
      * @var string
@@ -58,24 +64,33 @@ class graphReportGenerator {
      * @var string
      */
     private $databasePassword;
+        
+    /**
+     * Self-explanatory
+     * @var array
+     */
     private $chartData;
+            
+    /**
+     * Self-explanatory
+     * @var array
+     */
     private $chartDataConverted;
+    
+    /**
+     * Self-explanatory
+     * @var string
+     */
+    private $currentTrimester;
+    
+    
+    
 
-    public function __construct() {    
-    }
-
-    public function setUserId($userId) {
-        $this->userId = $userId;
-    }
-
-    public function setDatabaseConnectionData($databaseHost, $databaseName, $databaseUsername, $databasePassword) {
+    public function __construct($databaseHost, $databaseName, $databaseUsername, $databasePassword) {
         $this->databaseHost = $databaseHost;
         $this->databaseName = $databaseName;
         $this->databaseUsername = $databaseUsername;
         $this->databasePassword = $databasePassword;
-    }
-
-    private function connectToDatabase() {
         try {
             $this->pdoHandle = new \PDO("mysql:host=$this->databaseHost;dbname=$this->databaseName;charset=utf8", $this->databaseUsername, $this->databasePassword, array(
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
@@ -86,6 +101,51 @@ class graphReportGenerator {
         }
     }
 
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+    
+    public function setChartType($chartType) {
+        $this->chartType = $chartType;
+    }
+    
+     
+    /**
+     * Function to determine current trimester
+     * 
+     * Simply selects the gradeTrimester cond with the newest grade
+     * 
+     * @throws Exception
+     * @return string
+     * 
+     */
+    public function getCurrentTrimester(){
+        try {
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeTrimester FROM grades WHERE gradeDownloadDate = (SELECT MAX(gradeDownloadDate) FROM grades)');
+            $queryHandleSelect->execute();
+            $this->currentTrimester = $queryHandleSelect->fetch();
+        } catch (PDOException $e) {
+            throw new Exception('Błąd bazy danych:' . $e->getMessage());
+        }
+        return $this->currentTrimester;
+    }
+
+    private function getDataForChart() {
+        try {
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = 3');
+            $queryHandleSelect->bindParam(':userId', $this->userId);
+            $queryHandleSelect->execute();
+            $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception('Błąd bazy danych:' . $e->getMessage());
+        }
+        //Convert array from database
+        $this->chartDataConverted = array('1' => 0, '1.5' => 0, '2' => 0, '2.5' => 0, '3' => 0, '3.5' => 0, '4' => 0, '4.5' => 0, '5' => 0, '5.5' => 0, '6' => 0);
+        foreach ($this->chartData as $val) {
+            $this->chartDataConverted[$val['gradeValue']] = $this->chartDataConverted[$val['gradeValue']] + $val['gradeWeight'];
+        }
+    }
+    
     private function generateChart() {
         /* Create your dataset object */
         $myData = new pData();
@@ -132,25 +192,8 @@ class graphReportGenerator {
         /* Build the PNG file and send it to the web browser */
         $myPicture->Stroke();
     }
-
-    private function getDataForChart() {
-        try {
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = 3');
-            $queryHandleSelect->bindParam(':userId', $this->userId);
-            $queryHandleSelect->execute();
-            $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            throw new Exception('Błąd bazy danych:' . $e->getMessage());
-        }
-        //Convert array from database
-        $this->chartDataConverted = array('1' => 0, '1.5' => 0, '2' => 0, '2.5' => 0, '3' => 0, '3.5' => 0, '4' => 0, '4.5' => 0, '5' => 0, '5.5' => 0, '6' => 0);
-        foreach ($this->chartData as $val) {
-            $this->chartDataConverted[$val['gradeValue']] = $this->chartDataConverted[$val['gradeValue']] + $val['gradeWeight'];
-        }
-    }
-
+    
     public function executeProcessing() {
-        $this->connectToDatabase();
         $this->getDataForChart();
         $this->generateChart();
     }

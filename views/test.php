@@ -88,5 +88,5 @@ echo "</table>";
 
 ?>
 <hr>
-<img src="tools/showGraph.php" />
+
 <?php include('_footer_loggedin.php'); ?>
