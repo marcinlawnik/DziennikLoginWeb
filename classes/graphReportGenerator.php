@@ -170,14 +170,14 @@ class graphReportGenerator {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             //bind trimester
-            if($this->chartTrimester == NULL || $this->chartTrimester != 1 || $this->chartTrimester != 2 || $this->chartTrimester != 3){
+            if($this->chartTrimester == NULL){
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); 
             }
             else{
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
             }
             //bind subject
-            if($this->chartSubject == NULL || !in_array($this->chartSubject, $this->userSubjects)){
+            if($this->chartSubject == NULL){// || !in_array($this->chartSubject, $this->userSubjects)
                 $queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId'); 
             }
             else{
