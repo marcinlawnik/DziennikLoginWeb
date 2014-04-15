@@ -172,7 +172,7 @@ class graphReportGenerator {
             $queryHandleSelect->bindParam(':userId', $this->userId);
             //bind trimester
             //if($this->chartTrimester == NULL){
-                $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); 
+                $queryHandleSelect->bindParam(':gradeTrimester', $trimester='3'); //$this->currentTrimester
             //}
             //else{
                 //$queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
