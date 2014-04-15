@@ -28,7 +28,7 @@ if ($login->isUserLoggedIn() == true) {
     $chartGenerator->setUserId($_SESSION['user_id']);
     $chartGenerator->getCurrentTrimester();
     $chartGenerator->getSubjectsArray();
-    $chartGenerator->setChartSubject(2);
+    $chartGenerator->setChartSubject(21);
     $chartGenerator->executeProcessing();
 } else {
     header('Location: http://dl.lawniczak.me/login.php');
