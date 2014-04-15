@@ -178,7 +178,7 @@ class graphReportGenerator {
             }
             //bind subject
             if(!isset($this->chartSubject) || in_array($this->chartSubject, $this->userSubjects)){
-                $queryHandleSelect->bindParam(':subjectId', 'subjectId'); 
+                $queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId'); 
             }
             else{
                 $queryHandleSelect->bindParam(':subjectId', $this->chartSubject); 
