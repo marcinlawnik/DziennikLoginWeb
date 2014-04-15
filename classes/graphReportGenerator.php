@@ -127,7 +127,7 @@ class graphReportGenerator {
         } catch (PDOException $e) {
             throw new Exception('Błąd bazy danych:' . $e->getMessage());
         }
-        return $this->currentTrimester;
+        return $this->currentTrimester[0];
     }
 
     private function getDataForChart() {
