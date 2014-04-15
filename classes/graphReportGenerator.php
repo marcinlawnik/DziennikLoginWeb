@@ -137,11 +137,12 @@ class graphReportGenerator {
         try {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeTrimester FROM grades WHERE gradeDownloadDate = (SELECT MAX(gradeDownloadDate) FROM grades)');
             $queryHandleSelect->execute();
-            $this->currentTrimester = $queryHandleSelect->fetch();
+            $queryFetch = $queryHandleSelect->fetch();
+            $this->currentTrimester = $queryFetch[0];
         } catch (PDOException $e) {
             throw new Exception('Błąd bazy danych:' . $e->getMessage());
         }
-        return $this->currentTrimester[0];
+        //return $this->currentTrimester[0];
     }
     
     /**
@@ -162,7 +163,7 @@ class graphReportGenerator {
         } catch (PDOException $e) {
             throw new Exception('Błąd bazy danych:' . $e->getMessage());
         }
-        return $this->userSubjects;
+        //return $this->userSubjects;
     }
 
     private function getDataForChart() {
