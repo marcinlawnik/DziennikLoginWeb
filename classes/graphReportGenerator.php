@@ -39,7 +39,7 @@ class graphReportGenerator {
      * The subject of chart to be generated
      * @var string
      */
-    private $chartSubject;
+    private $chartSubject = NULL;
     
     /**
      * Self-explanatory
@@ -81,7 +81,7 @@ class graphReportGenerator {
      * Self-explanatory
      * @var string
      */
-    private $currentTrimester;
+    private $currentTrimester = NULL;
     
     /**
      * Trimester for which the chart is generated
@@ -170,14 +170,14 @@ class graphReportGenerator {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             //bind trimester
-            if(!isset($this->chartTrimester) || $this->chartTrimester != 1 || 2 || 3){
+            if($this->chartTrimester == NULL || $this->chartTrimester != 1 || $this->chartTrimester != 2 || $this->chartTrimester != 3){
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); 
             }
             else{
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
             }
             //bind subject
-            if(!isset($this->chartSubject) || in_array($this->chartSubject, $this->userSubjects)){
+            if($this->chartSubject == NULL || !in_array($this->chartSubject, $this->userSubjects)){
                 $queryHandleSelect->bindParam(':subjectId', $subjectId = 'subjectId'); 
             }
             else{
