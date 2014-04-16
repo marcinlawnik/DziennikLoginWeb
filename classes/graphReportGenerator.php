@@ -163,7 +163,7 @@ class graphReportGenerator {
      */
     public function determineSubjectsArray(){
         try {
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT DISTINCT subjectId FROM grades WHERE userId=:userId');
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT subjectId FROM grades WHERE userId=:userId GROUP BY subjectId');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             $queryHandleSelect->execute();
             $this->userSubjects = $queryHandleSelect->fetch();
