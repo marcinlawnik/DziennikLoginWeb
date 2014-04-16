@@ -193,7 +193,7 @@ class graphReportGenerator {
             //        
             //    }
             //}
-            if($this->chartSubject != NULL){// && !in_array($this->chartSubject, $this->userSubjects)
+            if($this->chartSubject != NULL && in_array($this->chartSubject, $this->userSubjects)){// 
                 $queryHandleSelect->bindValue(':subjectId', $this->chartSubject);
                 $queryHandleSelect->bindValue(':subjectId2', $this->chartSubject); 
             }
