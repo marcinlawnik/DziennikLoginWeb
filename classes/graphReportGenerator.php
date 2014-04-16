@@ -193,13 +193,14 @@ class graphReportGenerator {
             //        
             //    }
             //}
-            if($this->chartSubject != NULL && in_array($this->chartSubject, $this->userSubjects)){// 
-                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject);
-                $queryHandleSelect->bindValue(':subjectId2', $this->chartSubject); 
-            }
-            else{
+            if($this->chartSubject === NULL || !in_array($this->chartSubject, $this->userSubjects)){// 
                 $queryHandleSelect->bindValue(':subjectId', '');
                 $queryHandleSelect->bindValue(':subjectId2', ''); 
+            }
+            else{
+                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject);
+                $queryHandleSelect->bindValue(':subjectId2', $this->chartSubject); 
+
             }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
