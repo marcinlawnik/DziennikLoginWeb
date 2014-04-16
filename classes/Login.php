@@ -368,7 +368,7 @@ class Login
     private function deleteRememberMeCookie()
     {
         // if database connection opened
-        if ($this->databaseConnection()) {// && isset($_SESSION['user_id'])
+        if ($this->databaseConnection() && isset($_SESSION['user_id'])) {// && isset($_SESSION['user_id'])
             // Reset rememberme token
             $sth = $this->db_connection->prepare("UPDATE users SET user_rememberme_token = NULL WHERE user_id = :user_id");
             $sth->execute(array(':user_id' => $_SESSION['user_id']));
