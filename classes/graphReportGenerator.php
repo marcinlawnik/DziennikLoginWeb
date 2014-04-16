@@ -127,7 +127,7 @@ class graphReportGenerator {
         return $this->currentTrimester;
     }
     
-    public function getSubjectArray() {
+    public function getSubjectsArray() {
         return $this->userSubjects;
     }
      
