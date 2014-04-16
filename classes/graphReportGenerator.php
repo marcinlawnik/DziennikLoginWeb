@@ -175,32 +175,32 @@ class graphReportGenerator {
 
     private function getDataForChart() {
         try {
-            //second version with case
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE gradeTrimester=:gradeTrimester AND userId=:userId AND subjectId = CASE WHEN :subjectId="" THEN subjectId ELSE :subjectId2 END');
-            $queryHandleSelect->bindParam(':userId', $this->userId);
-            if($this->chartTrimester == NULL){
-                $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); //
+            // first query with subject
+            if($this->chartSubject != NULL && in_array($this->chartSubject, $this->userSubjects)){
+                $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
+                //bind user id
+                $queryHandleSelect->bindParam(':userId', $this->userId);
+                //bind trimester
+                if($this->chartTrimester == NULL){
+                    $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); //
+                }
+                else{
+                    $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
+                }
+                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject); 
             }
-            else{
-                $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
-            }
-            //check if subject is in the subject array
-            //foreach($this->userSubjects as $subjectId){
-            //    if(){
-            //        
-            //    }
-            //    else{
-            //        
-            //    }
-            //}
-            if($this->chartSubject === NULL || !in_array($this->chartSubject, $this->userSubjects)){// 
-                $queryHandleSelect->bindValue(':subjectId', '');
-                $queryHandleSelect->bindValue(':subjectId2', ''); 
-            }
-            else{
-                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject);
-                $queryHandleSelect->bindValue(':subjectId2', $this->chartSubject); 
 
+            else{//second query no subject choice
+                $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE userId=:userId AND gradeTrimester = :gradeTrimester');
+                //bind user id
+                $queryHandleSelect->bindParam(':userId', $this->userId);
+                //bind trimester
+                if($this->chartTrimester == NULL){
+                    $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); //
+                }
+                else{
+                    $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
+                }
             }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
