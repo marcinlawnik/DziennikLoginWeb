@@ -30,7 +30,12 @@ if ($login->isUserLoggedIn() == true) {
     $chartGenerator->determineSubjectsArray();
     //$x=$chartGenerator->getSubjectsArray();
     //var_dump($x);
-    $chartGenerator->setChartSubject(21);
+    if(isset($_GET['subject']) && $_GET['subject'] != '' && is_numeric($_GET['subject'])){
+        $chartGenerator->setChartSubject($_GET['subject']);   
+    }
+    if(isset($_GET['trimester']) && $_GET['trimester'] != '' && is_numeric($_GET['trimester'])){
+        $chartGenerator->setChartTrimester($_GET['trimester']);  
+    }
     $chartGenerator->executeProcessing();
 } else {
     header('Location: http://dl.lawniczak.me/login.php');
