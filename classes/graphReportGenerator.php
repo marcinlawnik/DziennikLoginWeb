@@ -166,7 +166,7 @@ class graphReportGenerator {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT subjectId FROM grades WHERE userId=:userId GROUP BY subjectId');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             $queryHandleSelect->execute();
-            $this->userSubjects = $queryHandleSelect->fetch();
+            $this->userSubjects = $queryHandleSelect->fetchAll();
         } catch (PDOException $e) {
             throw new Exception('Błąd bazy danych:' . $e->getMessage());
         }
