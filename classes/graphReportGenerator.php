@@ -123,6 +123,13 @@ class graphReportGenerator {
         $this->chartTrimester = $chartTrimester;
     }
     
+    public function getCurrentTrimester() {
+        return $this->currentTrimester;
+    }
+    
+    public function getSubjectArray() {
+        return $this->userSubjects;
+    }
      
     /**
      * Function to determine current trimester
@@ -133,7 +140,7 @@ class graphReportGenerator {
      * @return string
      * 
      */
-    public function getCurrentTrimester(){
+    public function determineCurrentTrimester(){
         try {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeTrimester FROM grades WHERE gradeDownloadDate = (SELECT MAX(gradeDownloadDate) FROM grades)');
             $queryHandleSelect->execute();
@@ -154,7 +161,7 @@ class graphReportGenerator {
      * @return string
      * 
      */
-    public function getSubjectsArray(){
+    public function determineSubjectsArray(){
         try {
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT DISTINCT subjectId FROM grades WHERE userId=:userId');
             $queryHandleSelect->bindParam(':userId', $this->userId);
