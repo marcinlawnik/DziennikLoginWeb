@@ -24,14 +24,14 @@ $login = new Login();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
-    $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
+    $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME, DB_USER, DB_PASS);
     $chartGenerator->setUserId($_SESSION['user_id']);
     $chartGenerator->determineCurrentTrimester();
     $chartGenerator->determineSubjectsArray();
-    $x=$chartGenerator->getSubjectsArray();
-    var_dump($x);
-    //$chartGenerator->setChartSubject(21);
-    //$chartGenerator->executeProcessing();
+    //$x=$chartGenerator->getSubjectsArray();
+    //var_dump($x);
+    $chartGenerator->setChartSubject(21);
+    $chartGenerator->executeProcessing();
 } else {
     header('Location: http://dl.lawniczak.me/login.php');
 }
