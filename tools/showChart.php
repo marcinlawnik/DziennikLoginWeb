@@ -26,10 +26,12 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) {
     $chartGenerator = new graphReportGenerator(DB_HOST, DB_NAME2, DB_USER2, DB_PASS2);
     $chartGenerator->setUserId($_SESSION['user_id']);
-    $chartGenerator->getCurrentTrimester();
-    $chartGenerator->getSubjectsArray();
+    $chartGenerator->determineCurrentTrimester();
+    $chartGenerator->determineSubjectsArray();
+    $x=$chartGenerator->getSubjectsArray();
+    var_dump($x);
     //$chartGenerator->setChartSubject(21);
-    $chartGenerator->executeProcessing();
+    //$chartGenerator->executeProcessing();
 } else {
     header('Location: http://dl.lawniczak.me/login.php');
 }
