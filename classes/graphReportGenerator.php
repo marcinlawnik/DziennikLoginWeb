@@ -196,7 +196,7 @@ class graphReportGenerator {
             }*/
             //second version with case
             
-            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE gradeTrimester=:gradeTrimester AND userId=:userId AND subjectId = CASE WHEN :subjectId="" THEN subjectId ELSE :subjectId END');
+            $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE gradeTrimester=:gradeTrimester AND userId=:userId AND subjectId = CASE WHEN :subjectId="" THEN subjectId ELSE :subjectId2 END');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             if($this->chartTrimester == NULL){
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->currentTrimester); //
@@ -205,9 +205,13 @@ class graphReportGenerator {
                 $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
             }
             if($this->chartSubject != NULL && !in_array($this->chartSubject, $this->userSubjects)){
-                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject); 
+                $queryHandleSelect->bindValue(':subjectId', $this->chartSubject);
+                $queryHandleSelect->bindValue(':subjectId2', $this->chartSubject); 
             }
-            
+            else{
+                $queryHandleSelect->bindValue(':subjectId', '');
+                $queryHandleSelect->bindValue(':subjectId2', ''); 
+            }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
