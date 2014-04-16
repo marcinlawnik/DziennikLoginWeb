@@ -169,7 +169,7 @@ class graphReportGenerator {
     private function getDataForChart() {
         try {
             //bind subject 
-            if($this->chartSubject != NULL && in_array($this->chartSubject, $this->userSubjects)){// first query
+            if($this->chartSubject != NULL){// first query  && in_array($this->chartSubject, $this->userSubjects)
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             //bind user id
             $queryHandleSelect->bindParam(':userId', $this->userId);
