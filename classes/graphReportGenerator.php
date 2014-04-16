@@ -169,7 +169,7 @@ class graphReportGenerator {
     private function getDataForChart() {
         try {
             //bind subject 
-            /*if($this->chartSubject != NULL && !in_array($this->chartSubject, $this->userSubjects)){// first query
+            if($this->chartSubject != NULL && in_array($this->chartSubject, $this->userSubjects)){// first query
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE subjectId=:subjectId AND userId=:userId AND gradeTrimester = :gradeTrimester');
             //bind user id
             $queryHandleSelect->bindParam(':userId', $this->userId);
@@ -193,9 +193,10 @@ class graphReportGenerator {
                 else{
                     $queryHandleSelect->bindParam(':gradeTrimester', $this->chartTrimester); 
                 }
-            }*/
+            }
+            $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
             //second version with case
-            
+            /*
             $queryHandleSelect = $this->pdoHandle->prepare('SELECT gradeValue,gradeWeight FROM grades WHERE gradeTrimester=:gradeTrimester AND userId=:userId AND subjectId = CASE WHEN :subjectId="" THEN subjectId ELSE :subjectId2 END');
             $queryHandleSelect->bindParam(':userId', $this->userId);
             if($this->chartTrimester == NULL){
@@ -214,6 +215,7 @@ class graphReportGenerator {
             }
             $queryHandleSelect->execute();
             $this->chartData = $queryHandleSelect->fetchAll(PDO::FETCH_ASSOC);
+            */
         } catch (PDOException $e) {
             throw new Exception('Błąd bazy danych:' . $e->getMessage());
         }
